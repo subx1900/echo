@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: "{{ include "echo.fullname" . }}-test-connection"
+  name: "{{ include "echo-chart.fullname" . }}-test-connection"
   labels:
-    {{- include "echo.labels" . | nindent 4 }}
+    {{- include "echo-chart.labels" . | nindent 4 }}
   annotations:
     "helm.sh/hook": test-success
 spec:
@@ -11,5 +11,5 @@ spec:
     - name: wget
       image: busybox
       command: ['wget']
-      args: ['{{ include "echo.fullname" . }}:{{ .Values.service.port }}']
+      args: ['{{ include "echo-chart.fullname" . }}:{{ .Values.service.port }}']
   restartPolicy: Never

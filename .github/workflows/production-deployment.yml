@@ -15,10 +15,10 @@ jobs:
       name: checkout code
       
     - name: Build the Docker image
-      run: docker build -t subx1900/echo:latest .
+      run: docker build -t subx1900/echo:${{ github.sha }} .
     
     - name: Push the Docker image
-      run: echo '${{ secrets.DOCKER_PASS }}' | docker login --username '${{ secrets.DOCKER_USER }}' --password-stdin && docker push subx1900/echo:latest
+      run: echo '${{ secrets.DOCKER_PASS }}' | docker login --username '${{ secrets.DOCKER_USER }}' --password-stdin && docker push subx1900/echo:${{ github.sha }}
 
     - name: 'Deploy'
       uses: 'deliverybot/helm@v1'
@@ -32,6 +32,6 @@ jobs:
           replicaCount: 2
           image:
             repository: subx1900/echo
-            tag: latest
+            tag: ${{ github.sha }}
       env:
         KUBECONFIG_FILE: '${{ secrets.KUBECONFIG }}'

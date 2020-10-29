@@ -33,5 +33,6 @@ jobs:
           image:
             repository: subx1900/echo
             tag: ${{ github.sha }}
+            honeybadgerApiKey: ${{ secrets.HONEYBADGER_API_KEY }}
       env:
         KUBECONFIG_FILE: '${{ secrets.KUBECONFIG }}'

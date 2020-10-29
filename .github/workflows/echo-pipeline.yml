@@ -1,15 +1,13 @@
 name: Echo-Pipeline
 
 on:
-  push:
-    branches: [ master ]
   pull_request:
     branches: [ master ]
 
 jobs:
 
   build:
-    name: Build
+    name: Pull request test
     runs-on: ubuntu-latest
     steps:
 

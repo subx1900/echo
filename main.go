@@ -3,7 +3,9 @@ package main
 import (
 	"encoding/json"
 	"io/ioutil"
+	"log"
 	"net/http"
+	"github.com/honeybadger-io/honeybadger-go"
 )
 
 type Response struct {
@@ -33,5 +35,6 @@ func main() {
 	http.HandleFunc("/", echo)
 
 	print("Listening on 3000")
-	http.ListenAndServe(":3000", nil)
+	var handler http.Handler
+	log.Fatal(http.ListenAndServe(":3000", honeybadger.Handler(handler)))
 }

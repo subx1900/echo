@@ -10,7 +10,7 @@ import (
 )
 
 func TestEcho(t *testing.T) {
-	t.Run("Tests echo3's empty body", func(t *testing.T) {
+	t.Run("Tests echo's empty body", func(t *testing.T) {
 
 		request, _ := http.NewRequest(http.MethodGet, "/", bytes.NewBufferString(url.Values{}.Encode()))
 		response := httptest.NewRecorder()

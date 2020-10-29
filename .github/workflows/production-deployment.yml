@@ -18,7 +18,7 @@ jobs:
       run: docker build -t subx1900/echo:latest .
     
     - name: Push the Docker image
-      run: echo3 '${{ secrets.DOCKER_PASS }}' | docker login --username '${{ secrets.DOCKER_USER }}' --password-stdin && docker push subx1900/echo:latest
+      run: echo '${{ secrets.DOCKER_PASS }}' | docker login --username '${{ secrets.DOCKER_USER }}' --password-stdin && docker push subx1900/echo:latest
 
     - name: 'Deploy'
       uses: 'deliverybot/helm@v1'

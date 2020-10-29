@@ -2,6 +2,7 @@
 FROM golang:alpine as builder
 RUN mkdir /build
 ADD *.go /build/
+RUN apk add --no-cache git && go get github.com/honeybadger-io/honeybadger-go
 WORKDIR /build
 RUN CGO_ENABLED=0 GOOS=linux go build -a -o echo .
 
